@@ -1,0 +1,68 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0.02";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    Inlet
+    {
+        type            groovyBC;
+        refValue        uniform (0 0 0);
+        refGradient     uniform (0 0 0);
+        valueFraction   uniform 1;
+        value           uniform (0 0 0);
+        valueExpression "-normal()*(vel_profile)";
+        gradientExpression "vector(0,0,0)";
+        fractionExpression "1";
+        evaluateDuringConstruction 0;
+        cyclicSlave     0;
+        variables       
+7
+(
+"zp=pts().z;"
+"minZ=min(zp);"
+"maxZ=max(zp);"
+"center_z=0.5*(maxZ+minZ);"
+"R=0.5*(maxZ-minZ);"
+"u_mean=0.0044;"
+"vel_profile=2*(1-(pow(pos().y,2)+pow(pos().z,2))/pow(R,2))*u_mean;"
+)
+;
+        timelines       (
+);
+        lookuptables    (
+);
+        lookuptables2D  (
+);
+    }
+    Outlet
+    {
+        type            pressureInletOutletVelocity;
+        value           uniform (0 0 0);
+    }
+    AortaWall
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+}
+
+
+// ************************************************************************* //

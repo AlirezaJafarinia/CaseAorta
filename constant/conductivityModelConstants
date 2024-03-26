@@ -1,0 +1,29 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class dictionary;
+    location "constant";
+    object conductivityModelConstants;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+b0                              b0                          [0 1 0 0 0 0 0] 4e-6;
+
+membraneShearModulus            membraneShearModulus        [1 0 -2 0 0 0 0] 1e-5;
+
+lambda                          lambda                      [0 0 0 0 0 0 0] 0.38;
+
+sigma_pl                        sigma_pl                    [-1 -2 3 0 0 2 0] 1.3;
+
+hematocrit                      hematocrit                  [1 -3 0 0 0 0 0] 0.45;
+
+odConst                         odConst                     [0 0 -0.5 0 0 0 0] 1;
+
